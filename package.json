@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "M-Tracker UI",
   "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --output-public-path=/dist/",
+    "build": "webpack"
+  },
   "repository": "https://github.com/dalaineme/m-tracker-ui.git",
   "author": "dcDalin <mcdalinoluoch@gmail.com>",
   "license": "MIT",
