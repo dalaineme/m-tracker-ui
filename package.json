@@ -4,7 +4,7 @@
   "description": "M-Tracker UI",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --output-public-path=/dist/",
+    "start": "webpack-dev-server --output-public-path=/UI/assets/js/",
     "build": "webpack"
   },
   "repository": "https://github.com/dalaineme/m-tracker-ui.git",

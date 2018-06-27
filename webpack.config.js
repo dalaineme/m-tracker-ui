@@ -1,13 +1,17 @@
 const path = require("path");
+const srcPrefix = "./src/";
 
 module.exports = {
   mode: "development",
   entry: {
-    app: ["babel-polyfill", "./src/app.js"]
+    app: ["babel-polyfill", srcPrefix + "app.js"],
+    helpers: srcPrefix + "helpers.js",
+    showRequests: ["babel-polyfill", srcPrefix + "showRequests.js"]
   },
   output: {
-    path: path.resolve(__dirname, "UI/assets/js"),
-    filename: "app.bundle.js"
+    path: path.join(__dirname, "UI/assets/js"),
+    publicPath: "/UI/assets/js",
+    filename: "[name].js"
   },
   module: {
     rules: [

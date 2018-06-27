@@ -1,1 +1,4 @@
-const hello = "hello";
+// Root URL
+const rootUrl = "http://127.0.0.1:5000/api/v1/";
+
+export { rootUrl };
