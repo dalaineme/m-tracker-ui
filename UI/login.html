@@ -73,9 +73,18 @@
         <div class="input-form">
           <h2>Log in to your account.</h2>
           <form method="post" id="login-form">
-            <input type="email" id="email" name="email" placeholder="Email" required />
-            <input type="password" id="password" name="password" placeholder="Password" required />
-            <button class="submit">Login</button>
+            <div id="res-message">
+              <!-- Error or success message shown here -->
+            </div>
+            <input type="email" id="email" name="email" placeholder="Email" minlength="5" maxlength="55" required>
+            <input type="password" id="password" name="password" placeholder="Password" minlength="8" maxlength="15" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+              title="Please include at least 1 uppercase character, 1 lowercase character, and 1 number." required>
+            <button class="submit">
+              <span id="signup-label" style="display: block">
+                Login
+              </span>
+              <img id="loader" src="../loader.gif" style="display:none; margin-left: auto; margin-right: auto; width: 20%;" alt="">
+            </button>
             <p>New here?
               <a href="signup.html">Create your account.</a>
             </p>
