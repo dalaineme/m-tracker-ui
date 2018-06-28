@@ -1,5 +1,8 @@
 import { rootUrl } from "./app";
-import { getElement } from "./helpers";
+import { getElement, setToken, checkToken } from "./helpers";
+
+// Check token, if exists and valid, redirect
+checkToken("user/index.html");
 
 document.getElementById("login-form").addEventListener("submit", loginFunction);
 
@@ -42,15 +45,15 @@ function loginFunction(event) {
           hideSpinner();
           showLabel();
         } else {
+          // set token
+          setToken(res.token);
           if (res.user_level === "Admin") {
-            result += `<p class="succ-msg">${res.msg} - Admin</p>`;
-            getElement("res-message", result);
+            window.location.href = "admin/index.html";
             console.log("Success:", res);
             hideSpinner();
             showLabel();
           } else {
-            result += `<p class="succ-msg">${res.msg} - User</p>`;
-            getElement("res-message", result);
+            window.location.href = "user/index.html";
             console.log("Success:", res);
             hideSpinner();
             showLabel();
