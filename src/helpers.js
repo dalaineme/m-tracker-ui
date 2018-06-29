@@ -13,6 +13,7 @@ function getElement(element, value) {
 function setToken(idToken) {
   // Saves user token to localStorage
   localStorage.setItem("id_token", idToken);
+  return "Token Set";
 }
 
 function getToken() {
@@ -25,11 +26,11 @@ function logout() {
   localStorage.removeItem("id_token");
   localStorage.removeItem("profile");
 }
-function loggedIn() {
-  // Checks if there is a saved token and it's still valid
-  const token = getToken();
-  return token;
-}
+// function loggedIn() {
+//   // Checks if there is a saved token and it's still valid
+//   const token = getToken();
+//   return true;
+// }
 function setProfile(profile) {
   // Saves profile data to localStorage
   localStorage.setItem("profile", JSON.stringify(profile));
@@ -40,27 +41,35 @@ function getProfile() {
   const profile = localStorage.getItem("profile");
   return profile ? JSON.parse(localStorage.profile) : {};
 }
-function checkToken(redirectTo) {
-  if (loggedIn()) {
-    fetch(rootUrl + "auth/user", {
-      method: "GET",
-      headers: {
-        Authorization: loggedIn()
+// Check if token exists and or valid
+function checkToken() {
+  return fetch(rootUrl + "auth/user", {
+    method: "GET",
+    headers: {
+      Authorization: localStorage.getItem("id_token")
+    }
+  })
+    .then(res => res.json())
+    .catch(err => console.log(err))
+    .then(res => {
+      if (res.msg === "success") {
+        localStorage.setItem("profile", JSON.stringify(res.result));
+        return "success";
+      } else {
+        console.log("Bad token or not exist");
+        return "fail";
       }
-    })
-      .then(res => res.json())
-      .catch(err => console.log(err))
-      .then(res => {
-        if (res.status === "success") {
-          setProfile(res.result);
-          window.location.href = redirectTo;
-        } else {
-          console.log("Bad token or not exist");
-          return "bad token";
-        }
-      });
+    });
+}
+
+/// Check user level
+
+function isAdmin() {
+  let user = getProfile();
+  if (user.user_level == "Admin") {
+    return true;
   } else {
-    console.log("No token");
+    return false;
   }
 }
 export {
@@ -70,7 +79,7 @@ export {
   setToken,
   getToken,
   logout,
-  loggedIn,
   checkToken,
-  getProfile
+  getProfile,
+  isAdmin
 };

@@ -1,8 +1,12 @@
 import { rootUrl } from "./app";
 import { getElement, setToken, checkToken } from "./helpers";
 
-// Check token, if exists and valid, redirect
-checkToken("user/index.html");
+// Check token, if exists and valid, redirect to profile
+checkToken().then(res => {
+  if (res === "success") {
+    window.location.href = "user/index.html";
+  }
+});
 
 document.getElementById("login-form").addEventListener("submit", loginFunction);
 
@@ -46,7 +50,8 @@ function loginFunction(event) {
           showLabel();
         } else {
           // set token
-          setToken(res.token);
+          console.log(res.token);
+          console.log(setToken(res.token));
           if (res.user_level === "Admin") {
             window.location.href = "admin/index.html";
             console.log("Success:", res);

@@ -1,5 +1,10 @@
 import { rootUrl } from "./app";
-import { getElement } from "./helpers";
+import { getElement, checkToken } from "./helpers";
+
+// Check token, if exists and valid, redirect to profile
+if (checkToken() === "success") {
+  window.location.href = "user/index.html";
+}
 
 document
   .getElementById("signup-form")

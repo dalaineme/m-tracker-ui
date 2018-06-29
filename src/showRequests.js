@@ -1,5 +1,7 @@
 import { rootUrl } from "./app";
-import { getElement } from "./helpers";
+import { getElement, isAdmin } from "./helpers";
+
+console.log(isAdmin());
 
 function showSpinner() {
   document.getElementById("loader").style.display = "block";
