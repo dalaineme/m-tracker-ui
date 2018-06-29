@@ -58,7 +58,7 @@
       </ul>
     </div>
     <div class="card content">
-      <div class="logged-user">Logged in as Mike Musalia</div>
+      <div class="logged-user" id="logged-user">Logged in as </div>
       <hr>
       <div class="filter" id="show-the-filter">
         <div class="show-filter">
@@ -75,24 +75,30 @@
             Close
           </button>
         </div>
-        <div class="filter-form request">
+        <form class="filter-form request" id="request-form">
+          <div id="res-message">
+            <!-- Error or success message shown here -->
+          </div>
           <div class="filter-left">
             <label for="">Request Title</label>
-            <input type="text">
+            <input type="text" id="title" name="title" placeholder="Title" minlength="20" maxlength="100" required>
           </div>
           <div class="filter-mid">
             <label for="">Request Description</label>
-            <textarea name=""></textarea>
+            <textarea name="" id="description" name="description" minlength="50"></textarea>
           </div>
           <div class="filter-right">
             <label for="">
               <br>
             </label>
             <button class="submit">
-              Submit Request
+              <span id="signup-label" style="display: block">
+                Signup
+              </span>
+              <img id="loader" src="../../loader.gif" style="display:none; margin-left: auto; margin-right: auto; width: 20%;" alt="">
             </button>
           </div>
-        </div>
+        </form>
       </div>
       <hr>
       <h3>My Requests.</h3>
