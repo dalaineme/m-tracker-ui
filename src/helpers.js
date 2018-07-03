@@ -72,6 +72,13 @@ function isAdmin() {
     return false;
   }
 }
+
+const urlParam = (name, w) => {
+  w = w || window;
+  let rx = new RegExp("[&|?]" + name + "=([^&#]+)"),
+    val = w.location.search.match(rx);
+  return !val ? "" : val[1];
+};
 export {
   createNode,
   append,
@@ -81,5 +88,6 @@ export {
   logout,
   checkToken,
   getProfile,
-  isAdmin
+  isAdmin,
+  urlParam
 };
