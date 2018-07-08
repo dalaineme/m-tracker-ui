@@ -226,25 +226,25 @@ hr {
   text-align: right;
   padding-bottom: 10px;
 }
-.status-approved {
+.status-Approved {
   background-color: rgba(31, 221, 21, 0.707);
   padding-left: 10px;
   padding-right: 10px;
   color: #fff;
 }
-.status-rejected {
+.status-Rejected {
   background-color: rgba(221, 21, 21, 0.631);
   padding-left: 10px;
   padding-right: 10px;
   color: #fff;
 }
-.status-pending {
+.status-Pending {
   background-color: rgba(221, 158, 21, 0.707);
   padding-left: 10px;
   padding-right: 10px;
   color: #fff;
 }
-.status-resolved {
+.status-Resolved {
   background-color: rgba(21, 134, 221, 0.707);
   padding-left: 10px;
   padding-right: 10px;

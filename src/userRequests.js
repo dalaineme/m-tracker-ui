@@ -160,7 +160,7 @@ setTimeout(() => {
               ${request_title.substr(0, 60)}...
             </div>
             <div class="request-mid-right">
-              <span class="status-pending" id="the-status">${current_status}</span>
+              <span class="status-${current_status}" id="the-status">${current_status}</span>
             </div>
           </div>
           <div class="request-body" id="request-body">

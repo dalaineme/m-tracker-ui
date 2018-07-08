@@ -77,12 +77,15 @@ setTimeout(() => {
         getElement("request-wrapper", result);
       } else {
         let requests = data.request;
+        let logs = requests.status_logs;
+
+        
 
         let result = `
           <div class="request-top" id="request-top">
             <div class="request-top-left" id="request-top-left">
-              <i class="far fa-calendar request-icons"></i>
-              ${requests.current_status}
+              <i class="fas fa-id-card request-icons"></i> Request ID: 
+              ${requests.request_id}
             </div>
             <div class="request-top-right" id="request-top-right">
               <i class="fas fa-envelope-square request-icons"></i>
@@ -92,21 +95,47 @@ setTimeout(() => {
           <div class="request-mid">
             <div class="request-mid-left" id="request-title">
               <i class="fas fa-toolbox request-icons"></i>
-              ${requests.request_title}...
+              ${requests.request_title}
             </div>
             <div class="request-mid-right">
-              <span class="status-pending" id="the-status">${
+              <span class="status-${requests.current_status}" id="the-status">${
                 requests.current_status
               }</span>
             </div>
           </div>
           <div class="request-body" id="request-body">
             <p class="request-body-p">
-              ${requests.request_description}...
+              ${requests.request_description}
             </p>
+            <br></br>
+            <table id="status-logs-table">
+              <tr>
+                <td>One</td>
+                <td>Two</td>
+              </tr>
+            </table>
           </div> 
           `;
         getElement("request-wrapper", result);
+        let status_logs = ``;
+        logs.forEach(function(current_value) {
+          const {
+            request_status,
+            date_updated
+          } = current_value;
+          status_logs += `
+              <tr>
+                <td>
+                  <span class="status-${current_value.request_status}" id="the-status">${
+                    current_value.request_status
+                  }</span>
+                </td>
+                <td>${current_value.date_updated}</td>
+              </tr>
+          `;
+          
+        });
+        getElement("status-logs-table", status_logs);
       }
     })
     .catch(reason => console.log(reason.message));
