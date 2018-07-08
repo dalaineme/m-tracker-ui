@@ -111,3 +111,63 @@ fetchRequests()
     })
     .catch(reason => console.log(reason.message));
 }, 1000);
+
+// Create request fomrm
+document
+  .getElementById("request-form")
+  .addEventListener("submit", requestFunction);
+
+function showSpinner() {
+  document.getElementById("loader").style.display = "block";
+}
+function showLabel() {
+  document.getElementById("signup-label").style.display = "block";
+}
+function hideSpinner() {
+  document.getElementById("loader").style.display = "none";
+}
+function hideLabel() {
+  document.getElementById("signup-label").style.display = "none";
+}
+
+function requestFunction(event) {
+    event.preventDefault();
+    showSpinner();
+    hideLabel();
+    let title = document.getElementById("title").value,
+      description = document.getElementById("description").value,
+      result = ``;
+    setTimeout(() => {
+      fetch(rootUrl + `users/requests/${request_id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: localStorage.getItem("id_token")
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description
+        })
+      })
+        .then(res => res.json())
+        .catch(err => console.log(err))
+        .then(res => {
+          if (res.status !== "success") {
+            result += `<p class="err-msg">${res.msg}</p>`;
+            getElement("res-message", result);
+            console.log("Failed:", res);
+            hideSpinner();
+            showLabel();
+          } else {
+            result += `<p class="succ-msg">${res.msg} Redirecting...</p>`;
+            getElement("res-message", result);
+            console.log("Success:", res);
+            hideSpinner();
+            showLabel();
+            setTimeout(() => {
+                window.location.href = "index.html";
+            }, 3000);
+          }
+        });
+    }, 2000);
+  }
