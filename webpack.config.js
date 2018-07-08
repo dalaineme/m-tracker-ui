@@ -11,7 +11,8 @@ module.exports = {
     login: ["babel-polyfill", srcPrefix + "login.js"],
     logout: srcPrefix + "logout.js",
     userRequests: ["babel-polyfill", srcPrefix + "userRequests.js"],
-    requestsInfo: ["babel-polyfill", srcPrefix + "requestsInfo.js"]
+    requestsInfo: ["babel-polyfill", srcPrefix + "requestsInfo.js"],
+    editRequest: srcPrefix + "editRequest.js",
   },
   output: {
     path: path.join(__dirname, "UI/assets/js"),

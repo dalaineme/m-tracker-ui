@@ -142,6 +142,18 @@ setTimeout(() => {
             request_title,
             request_description
           } = user;
+          let actionIcons = ``;
+          if (current_status === "Pending"){
+            actionIcons = `
+              <a href="request-info.html?request_id=${request_id}"><i class="fas fa-info-circle"></i></a>
+              <a href=""><i class="far fa-edit"></i> </a>
+              <a href=""><i class="fas fa-trash-alt"></i></a>
+            `;
+          } else if (current_status === "Approved"){
+            actionIcons = `
+              <a href="request-info.html?request_id=${request_id}"><i class="fas fa-info-circle"></i></a>
+            `;
+          }
 
           result += `
           <div class="request-top" id="request-top">
@@ -168,11 +180,12 @@ setTimeout(() => {
               ${request_description.substr(0, 120)}...
             </p>
           </div> 
-          <a href="request-info.html?request_id=${request_id}"><i class="fas fa-info-circle"></i></a>
-            <a href=""><i class="far fa-edit"></i> </a>
-            <a href=""><i class="fas fa-trash-alt"></i></a>
+          <div id="action-icons">
+            ${actionIcons}
+          </div>
         `;
           getElement("request-wrapper", result);
+          
         });
       }
     })
