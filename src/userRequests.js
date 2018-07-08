@@ -146,7 +146,7 @@ setTimeout(() => {
           if (current_status === "Pending"){
             actionIcons = `
               <a href="request-info.html?request_id=${request_id}"><i class="fas fa-info-circle"></i></a>
-              <a href=""><i class="far fa-edit"></i> </a>
+              <a href="edit-request.html?request_id=${request_id}"><i class="far fa-edit"></i> </a>
               <a href=""><i class="fas fa-trash-alt"></i></a>
             `;
           } else if (current_status === "Approved"){

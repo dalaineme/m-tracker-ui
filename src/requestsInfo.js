@@ -109,10 +109,6 @@ setTimeout(() => {
             </p>
             <br></br>
             <table id="status-logs-table">
-              <tr>
-                <td>One</td>
-                <td>Two</td>
-              </tr>
             </table>
           </div> 
           `;
@@ -132,6 +128,7 @@ setTimeout(() => {
                 </td>
                 <td>${current_value.date_updated}</td>
               </tr>
+              <br>
           `;
           
         });
